@@ -1,0 +1,26 @@
+{
+  "name": "expiremental_data_signal_processing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrey-sitsko/Experemental-data-signal-processing.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrey-sitsko/Experemental-data-signal-processing/issues"
+  },
+  "homepage": "https://github.com/andrey-sitsko/Experemental-data-signal-processing#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "express-fileupload": "^0.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
