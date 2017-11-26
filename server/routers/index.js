@@ -8,8 +8,8 @@ module.exports = (app) => {
   app.post('/getFilesData', (req, res) => {
     const files = req.files.files,
       filesList = fileParsers.getFilesList(files),
-      signalsData = fileParsers.getSignalsData(files, filesList);
+      signalsData = fileParsers.parseSignals(files, filesList);
 
-    fileParsers.processSignals(signalsData);
+    res.send(signalsData);
   });
 }

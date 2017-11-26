@@ -12,24 +12,42 @@ module.exports.getFilesList = (uploadedFiles) => {
     }
 }
 
-module.exports.getSignalsData = (files, filesList) => {
-    let signalData = files.filter((file) => {
+module.exports.parseSignals = (files, filesList) => {
+    let signalsData = files.filter((file) => {
         return filesList.some((fileName) => {
             return fileName === file.name;
         });
     });
 
-    return signalData.map((signal) => {
-        return signal.data;
+    return signalsData.map((signal) => {
+        return parseSignal(signal);
     });
 }
 
-module.exports.processSignals = (signals) => {
-    const testData = signals[0].readInt32LE(52);
-    let result = [];
-
-    for(let i = 52; i <= 100; i++) {
-        result.push(signals[0].readInt32BE(i));
+function parseSignal (signal) {
+    const signalData = signal.data;
+    let retVal = [];
+    return {
+        params: getSignalParams(signalData),
+        signalData: getSignalData(signalData)
     }
-    return signals;
+}
+
+function getSignalData(signalData) {
+    let _signalData = [];
+    for(let i = 52; i <signalData.length - 4; i += 4) {
+        _signalData.push(signalData.readFloatLE(i))
+    }
+    return _signalData;
+}
+
+function getSignalParams (signalData) {
+    return {
+        incomeChannelsNumber: signalData.readUIntLE(4,4),
+        sampleSizeN: signalData.readUIntLE(8,4),
+        spectrumLinesCount: signalData.readUIntLE(12,4),
+        //частота среза,
+        //частотное разрешение,
+        //Время приёма блока данных,
+    }
 }
