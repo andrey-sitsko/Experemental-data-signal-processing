@@ -29,7 +29,7 @@ function parseSignal (signal) {
     let retVal = [];
     return {
         params: getSignalParams(signalData),
-        signalData: getSignalData(signalData)
+        data: getSignalData(signalData)
     }
 }
 

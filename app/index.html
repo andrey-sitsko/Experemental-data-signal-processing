@@ -1,13 +1,26 @@
 <html>
     <head>
-
+        <title>Signal data</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
-    <body>
-        <form action="getFilesData" method='post' encType="multipart/form-data">
-            <input name="files" type="file" multiple>
-            <input type="submit" value="send">
-        </form>
+    <body data-ng-app="myApp"
+        data-ng-controller="mainCtrl">
+        <upload-button url="/getFilesData"
+            multiple="true"
+            on-success="uploadFiles(response)"
+            data="formData">
+        </upload-button>
+        <div class="signal__container" data-ng-repeat="signal in signals">
+            <div class="signal__params-container">
+                <span>Количество каналов: {{signal.params.incomeChannelsNumber}}</span>
+                <span>Размер выборки на один канал: {{signal.params.sampleSizeN}}</span>
+                <span>Количество спектральных линий: {{signal.params.spectrumLinesCount}}</span>
+            </div>
+            <canvas class="chart chart-line" chart-data="signal.data" chart-labels="signal.labels" 
+            chart-series="series"></canvas> 
+        </div>
     </body>
+    <script src="bundle.js"></script>
 </html>
 
 

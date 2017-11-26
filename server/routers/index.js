@@ -6,8 +6,12 @@ module.exports = (app) => {
   });
 
   app.post('/getFilesData', (req, res) => {
-    const files = req.files.files,
-      filesList = fileParsers.getFilesList(files),
+    const uploadedFiles = req.files;
+    let files = [];
+    for(let key of Object.keys(uploadedFiles)) {
+      files.push(uploadedFiles[key]);
+    }
+    const filesList = fileParsers.getFilesList(files),
       signalsData = fileParsers.parseSignals(files, filesList);
 
     res.send(signalsData);
