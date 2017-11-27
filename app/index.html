@@ -14,13 +14,18 @@
             <div class="signal__params-container">
                 <span>Количество каналов: {{signal.params.incomeChannelsNumber}}</span>
                 <span>Размер выборки на один канал: {{signal.params.sampleSizeN}}</span>
-                <span>Количество спектральных линий: {{signal.params.spectrumLinesCount}}</span>
+                <span>Минимальное значение сигнала: {{signal.params.minValue}}</span>
+                <span>Максимальное значение сигнала: {{signal.params.maxValue}}</span>
+                <span>Cреднее квадратическое значение: {{signal.params.nanqmean}}</span>
             </div>
-            <canvas class="chart chart-line" chart-data="signal.data" chart-labels="signal.labels" 
-            chart-series="series"></canvas> 
+            <div id="chartContainer{{$index}}" style="height: 400px; width: 100%;"></div>
+            <div id="chartContainerSpectrum{{$index}}" style="height: 400px; width: 100%;"></div>
         </div>
     </body>
     <script src="bundle.js"></script>
+    <script src="canvasjs.js"></script>
+    <script src="canvasjs.2.js"></script>
+    <script src="canvasjs.3.js"></script>
 </html>
 
 

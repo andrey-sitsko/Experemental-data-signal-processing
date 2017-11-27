@@ -2,3 +2,12 @@
     display: block;
     margin: 3px 0;
 }
+
+.signal__container {
+    margin: 30px 0 100px;
+}
+
+.signal__params-container {
+    font-size: 19px;
+    color: blueviolet;
+}

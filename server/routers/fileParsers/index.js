@@ -28,7 +28,7 @@ function parseSignal (signal) {
     const signalData = signal.data;
     let retVal = [];
     return {
-        params: getSignalParams(signalData),
+        params: getSignalParams(signal),
         data: getSignalData(signalData)
     }
 }
@@ -41,11 +41,15 @@ function getSignalData(signalData) {
     return _signalData;
 }
 
-function getSignalParams (signalData) {
+function getSignalParams (signal) {
+    const signalData = signal.data;
     return {
         incomeChannelsNumber: signalData.readUIntLE(4,4),
         sampleSizeN: signalData.readUIntLE(8,4),
         spectrumLinesCount: signalData.readUIntLE(12,4),
+        // maxValue: signalData.readFloatLE(44),
+        // minValue: signalData.readFloatLE(48),
+        fileName: signal.name
         //частота среза,
         //частотное разрешение,
         //Время приёма блока данных,
